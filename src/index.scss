@@ -1,0 +1,168 @@
+@keyframes ani_mate {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+:global(.alert-enter) {
+    opacity: 0;
+    transform: scale(0.9);
+}
+:global(.alert-enter-active) {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 300ms, transform 300ms;
+}
+:global(.alert-exit) {
+    opacity: 1;
+}
+:global(.alert-exit-active) {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 300ms, transform 300ms;
+}
+
+.code_input{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000000000;
+    .keyboard{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        background: rgba(255,255,255,1);
+        .kb_title{ 
+            height:88px;
+            box-sizing: border-box;
+            padding: 0 30px;
+            background:rgba(250,250,250,1);
+            border: 1px solid rgba(230,230,230,1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            p{
+                font-size:32px;
+                font-weight:500;
+                color:rgba(50,50,50,1);
+            }
+            svg{
+                width:46px;
+                height:34px;
+            }
+        }
+
+        .code_box{
+            background:rgba(255,255,255,1);
+            .code_info{
+                font-size:32px;
+                font-weight:400;
+                color:rgba(192,192,192,1);
+                text-align: center;
+                margin-top: 30px;
+                margin-bottom: 90px;
+            }
+            .numbers {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .boxes{
+                    margin: 0;
+                    :global(.box) {
+                        margin-bottom: 20px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        float: left;
+                        list-style: none;
+                        width:128px;
+                        height:138px;
+                        box-sizing: border-box;
+                        background:rgba(255,255,255,1);
+                        border-radius:10px;
+                        border:2px solid rgba(192,192,192,1);
+                        margin-right: 20px;
+                        font-size:80px;
+                        font-weight:400;
+                        color:rgba(50,50,50,1);
+                    }
+        
+                    :global(.active) {
+                        border-color: #C79D70;
+                    }
+        
+                    :global(.ani) {
+                        width:2px;
+                        height:90px;
+                        border-left: 2px solid #C79D70;
+                        animation: 1s steps(2) infinite;
+                        animation-name: ani_mate;
+                    }
+                }
+            }
+    
+            .get_code{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-bottom: 110px;
+            }
+            .get_code .btn{
+                font-size:28px;
+                font-weight:400;
+                color:rgba(50,140,255,1);
+            }
+            .get_code p{
+                font-size:28px;
+                font-weight:400;
+                color:rgba(192,192,192,1);
+                display: none;
+            }
+        }
+
+        .board_box{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-auto-rows: 108px;
+            align-items: center;
+            justify-items: center;
+            .key{
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-top: 1px solid #8C8C8C;
+                &:not(:nth-of-type(3n + 1)) {
+                    border-left: 1px solid #8C8C8C;
+                }
+                background:rgba(255,255,255,1);
+                font-size:56px;
+                font-weight:400;
+                color:rgba(0,0,0,1);
+                background-clip:text;
+                &:active{
+                    opacity: 0.6;
+                }
+                &:last-of-type{
+                    img{
+                        width:46px;
+                        height:34px;
+                    }
+                }
+            }
+            .none{
+                background: linear-gradient(rgba(195,199,207,0.75), rgba(195,199,207,0.3));
+            }
+        }
+    }
+}
