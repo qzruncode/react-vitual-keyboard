@@ -9,7 +9,7 @@
     "lib",
     "image"
   ],
-  "version": "1.2.4",
+  "version": "1.2.6",
   "description": "react vitual keyboard",
   "private": false,
   "scripts": {

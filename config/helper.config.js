@@ -11,7 +11,7 @@ const path = require('path');
 function generatePlugins(mode) {
     const config = [
         new webpack.BannerPlugin({ banner: 'created by yejiawei' }), // 添加一个内容到所有的输出文件的顶部
-        new CopyPlugin([ { from: 'static', to: 'static' },]), // 复制文件或者文件夹
+        new CopyPlugin([ { from: 'static', to: 'static' },{ from: 'types', to: '' }]), // 复制文件或者文件夹
         new webpack.DefinePlugin({ VERSION: JSON.stringify('v1'),}), // 定义全局变量，字符串必须使用嵌套的字符串引用；全局直接访问 VERSION 即可
         
         new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 5 }), // 控制代码分隔后模块的数量，减少http请求数

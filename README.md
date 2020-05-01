@@ -1,5 +1,7 @@
 ## react-vitual-keyboard
 
+[react-vitual-keyboard](https://github.com/qzruncode/react-vitual-keyboard)
+
 ### Install
 ```
 npm install react-vitual-keyboard --save
@@ -49,12 +51,12 @@ class App extends React.Component<IProps, IState> {
         return (
             <div>
                 <CodeInput
-                    num={4}
-                    show={this.state.show}
-                    onClose={this.handleClose}
-                    onInput={this.handleInput}
-                    onFinish={this.handleFinish}
-                    onSendCode={this.handleSendCode}
+                    num={4}                             // required (Number of number boxes)[number]
+                    show={this.state.show}              // required (Close and hide)[boolean]
+                    onClose={this.handleClose}          // optional (Closed callback)[function]
+                    onInput={this.handleInput}          // optional (The callback being entered)[function]
+                    onFinish={this.handleFinish}        // optional (Enter the completed callback)[function]
+                    onSendCode={this.handleSendCode}    // optional (Send verification code)[function]
                 />
             </div>
         );
@@ -64,9 +66,9 @@ export default App;
 ```
 
 ### Local run modification
-```
-You can download the source code and modify it yourself
+> You can download the source code and modify it yourself from github [react-vitual-keyboard](https://github.com/qzruncode/react-vitual-keyboard)
 
+```
 npm install
 npm run serve
 npm run build
