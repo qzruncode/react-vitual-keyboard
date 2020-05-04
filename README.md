@@ -1,3 +1,7 @@
+<img width="200" src="http://qzruncode.github.io/image/example.png" alt="keyboard" >
+
+[![NPM version](https://img.shields.io/npm/v/react-vitual-keyboard.svg)](https://www.npmjs.com/package/react-vitual-keyboard)
+
 ## react-vitual-keyboard
 
 [react-vitual-keyboard](https://github.com/qzruncode/react-vitual-keyboard)
@@ -8,8 +12,6 @@ npm install react-vitual-keyboard --save
 ```
 
 ### Example
-
-![demo](./image/example.png)
 
 ### Usage
 ```

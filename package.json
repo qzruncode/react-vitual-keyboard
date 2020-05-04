@@ -6,10 +6,9 @@
   ],
   "main": "lib/index",
   "files": [
-    "lib",
-    "image"
+    "lib"
   ],
-  "version": "1.2.6",
+  "version": "1.2.8",
   "description": "react vitual keyboard",
   "private": false,
   "scripts": {
@@ -17,8 +16,8 @@
     "serve": "cross-env NODE_ENV=development node config/index.js",
     "preview": "http-server dist"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["react component", "keyboard"],
+  "author": "JiaWei Ye <2640199637@@qq.com> ",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.8.7",
