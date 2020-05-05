@@ -12,12 +12,11 @@ For mobile captcha virtual keyboard, using HTML5 instead of native development
 npm install react-vitual-keyboard --save
 ```
 
-### Example
-
 ### Usage
 ```
 import React from 'react';
-import CodeInput from 'react-vitual-keyboard';
+import CodeInput from '../src/index';
+import styles from './index.scss';
 
 interface IProps {
 }
@@ -27,15 +26,7 @@ interface IState {
 class App extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
-        this.state = {
-            show: true,
-        };
-    }
-
-    public handleClose(show: boolean) {
-        this.setState({
-            show,
-        });
+        this.state = { show: false };
     }
 
     public handleInput(numbers: number[]) {
@@ -43,7 +34,7 @@ class App extends React.Component<IProps, IState> {
     }
 
     public handleFinish(numbers: number[]) {
-        console.log('I've typed it in', numbers);
+        console.log('The user is typing', numbers);
     }
 
     public handleSendCode() {
@@ -53,10 +44,11 @@ class App extends React.Component<IProps, IState> {
     public render() {
         return (
             <div>
+                <div className={styles.btn} onClick={() => this.setState({show: true})}>open</div>
                 <CodeInput
                     num={4}                             // required (Number of number boxes)[number]
                     show={this.state.show}              // required (Close and hide)[boolean]
-                    onClose={this.handleClose}          // optional (Closed callback)[function]
+                    onClose={(show: boolean) => this.setState({show})} // optional (Closed callback)[function]
                     onInput={this.handleInput}          // optional (The callback being entered)[function]
                     onFinish={this.handleFinish}        // optional (Enter the completed callback)[function]
                     onSendCode={this.handleSendCode}    // optional (Send verification code)[function]

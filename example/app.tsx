@@ -1,5 +1,6 @@
 import React from 'react';
 import CodeInput from '../src/index';
+import styles from './index.scss';
 
 interface IProps {
 }
@@ -9,39 +10,32 @@ interface IState {
 class App extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
-        this.state = {
-            show: true,
-        };
-    }
-
-    public handleClose(show: boolean) {
-        this.setState({
-            show,
-        });
+        this.state = { show: false };
     }
 
     public handleInput(numbers: number[]) {
-        console.log('用户正在输入', numbers);
+        console.log('The user is typing', numbers);
     }
 
     public handleFinish(numbers: number[]) {
-        console.log('输入框已经输入完', numbers);
+        console.log('The user is typing', numbers);
     }
 
     public handleSendCode() {
-        console.log('用户点击了请发送验证码');
+        console.log('User click please send verification code');
     }
 
     public render() {
         return (
             <div>
+                <div className={styles.btn} onClick={() => this.setState({show: true})}>open</div>
                 <CodeInput
-                    num={4}
-                    show={this.state.show}
-                    onClose={this.handleClose}
-                    onInput={this.handleInput}
-                    onFinish={this.handleFinish}
-                    onSendCode={this.handleSendCode}
+                    num={4}                             // required (Number of number boxes)[number]
+                    show={this.state.show}              // required (Close and hide)[boolean]
+                    onClose={(show: boolean) => this.setState({show})} // optional (Closed callback)[function]
+                    onInput={this.handleInput}          // optional (The callback being entered)[function]
+                    onFinish={this.handleFinish}        // optional (Enter the completed callback)[function]
+                    onSendCode={this.handleSendCode}    // optional (Send verification code)[function]
                 />
             </div>
         );

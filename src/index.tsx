@@ -1,8 +1,8 @@
 import * as React from 'react';
 import styles from './index.scss';
-import { Icon } from 'antd-mobile';
 import { useRef, useCallback, useState } from 'react';
 import backIcon from '../static/back.svg';
+import closeIcon from '../static/close.svg';
 
 interface IProps {
     show: boolean;
@@ -48,6 +48,8 @@ function KeyBoard(props: IProps) {
             return props.num;
         }
     });
+
+    const [preClose, setPreClose] = useState(() => props.show);
 
     const handleClick = useCallback(() => {
         if (timeBoxR && textBoxR && getBtnR) {
@@ -98,11 +100,18 @@ function KeyBoard(props: IProps) {
 
     }, [codesParentR]);
 
+    const handleClose = useCallback(() => {
+        setPreClose(false);
+        setTimeout(() => {
+            onClose(false);
+        }, 300);
+    }, []);
+
     return (
         <div className={styles.code_input}>
-            <div className={styles.keyboard}>
+            <div className={`${styles.keyboard} ${preClose ? styles.in : styles.out}`}>
                 <div className={styles.kb_title}>
-                    <Icon onClick={() => onClose(false)} type='cross' size='sm' />
+                    <img onClick={handleClose} src={closeIcon} alt=''/>
                     <p>请输入验证码</p>
                     <span> </span>
                 </div>

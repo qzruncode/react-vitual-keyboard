@@ -8,6 +8,29 @@
     }
 }
 
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes fadeInOut {
+    from {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+  
+    to {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+    }
+}
+
 :global(.alert-enter) {
     opacity: 0;
     transform: scale(0.9);
@@ -34,6 +57,12 @@
     height: 100%;
     background: rgba(0,0,0,0.5);
     z-index: 1000000000;
+    .in {
+        animation: 0.5s ease-in-out fadeInUp;
+    }
+    .out {
+        animation: 0.5s ease-in-out fadeInOut;
+    }
     .keyboard{
         position: absolute;
         bottom: 0;
@@ -55,7 +84,7 @@
                 font-weight:500;
                 color:rgba(50,50,50,1);
             }
-            svg{
+            img{
                 width:46px;
                 height:34px;
             }

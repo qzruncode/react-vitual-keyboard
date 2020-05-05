@@ -158,15 +158,19 @@ function generateLoaders(mode) {
                     plugins: [
                         '@babel/plugin-proposal-object-rest-spread',  // 转换rest语法
                         '@babel/plugin-transform-runtime', // 避免重复注入相同代码
-                        ["import", { libraryName: "antd-mobile", style: "css" }]
                     ]
                 }
             }]
         },
         {   // 第一个处理此loader
-            test: /\.tsx?$/, enforce: 'pre', exclude: /node_modules/,
+            test: /\.tsx?$/, 
+            enforce: 'pre', 
+            exclude: /node_modules/,
             use: [
-                { loader: 'ts-loader', options: { transpileOnly: true  }, },
+                { 
+                    loader: 'ts-loader', 
+                    options: { transpileOnly: true  },
+                },
                 { loader: 'tslint-loader', 
                     options: { 
                         fix: true, 
