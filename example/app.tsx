@@ -7,6 +7,7 @@ interface IProps {
 interface IState {
     show: boolean;
 }
+const rightCode = [8, 8, 8, 8];
 class App extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
@@ -18,7 +19,7 @@ class App extends React.Component<IProps, IState> {
     }
 
     public handleFinish(numbers: number[]) {
-        console.log('The user is typing', numbers);
+        console.log('User input completed', numbers);
     }
 
     public handleSendCode() {
@@ -31,8 +32,11 @@ class App extends React.Component<IProps, IState> {
                 <div className={styles.btn} onClick={() => this.setState({show: true})}>open</div>
                 <CodeInput
                     num={4}                             // required (Number of number boxes)[number]
+                    rightCode={rightCode}               // required (the right codes)[Array<number>]
                     show={this.state.show}              // required (Close and hide)[boolean]
-                    onClose={(show: boolean) => this.setState({show})} // optional (Closed callback)[function]
+                    onClose={                           // required (Closed callback)[function]
+                        (show: boolean) => this.setState({show})
+                    }
                     onInput={this.handleInput}          // optional (The callback being entered)[function]
                     onFinish={this.handleFinish}        // optional (Enter the completed callback)[function]
                     onSendCode={this.handleSendCode}    // optional (Send verification code)[function]

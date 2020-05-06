@@ -1,12 +1,13 @@
 import * as React from 'react';
 import styles from './index.scss';
-import { useRef, useCallback, useState } from 'react';
+import { useRef, useCallback, useState, useEffect } from 'react';
 import backIcon from '../static/back.svg';
 import closeIcon from '../static/close.svg';
 
 interface IProps {
     show: boolean;
     num: number;
+    rightCode: number[];
     onClose?: (flag: boolean) => void;
     onInput?: (numbers: number[]) => void;
     onFinish?: (numbers: number[]) => void;
@@ -30,7 +31,7 @@ function handleTimes(timeBox: HTMLElement, textBox: HTMLElement, getBtn: HTMLEle
 }
 
 
-const numbers: any = [];
+let numbers: any = [];
 function KeyBoard(props: IProps) {
     const { onClose = () => {}, onInput = () => {}, onFinish = () => {}, onSendCode = () => {} } = props;
 
@@ -38,6 +39,10 @@ function KeyBoard(props: IProps) {
     const textBoxR = useRef(null) as any;
     const getBtnR = useRef(null) as any;
     const codesParentR = useRef(null) as any;
+
+    useEffect(() => {
+        numbers = [];
+    }, []);
 
     const [codeNumbers] = useState(() => {
         if (props.num <= 4) {
@@ -51,6 +56,8 @@ function KeyBoard(props: IProps) {
 
     const [preClose, setPreClose] = useState(() => props.show);
 
+    const [inputErr, setIputErr] = useState(false);
+
     const handleClick = useCallback(() => {
         if (timeBoxR && textBoxR && getBtnR) {
             textBoxR.current.style.display = 'block';
@@ -59,6 +66,13 @@ function KeyBoard(props: IProps) {
             onSendCode();
         }
     }, [timeBoxR, textBoxR, getBtnR]);
+
+    const handleClose = useCallback(() => {
+        setPreClose(false);
+        setTimeout(() => {
+            onClose(false);
+        }, 300);
+    }, []);
 
     const handleInput = useCallback((number: number) => {
         let index = numbers.length;
@@ -93,19 +107,22 @@ function KeyBoard(props: IProps) {
                 }
             }
         } else {
+        }
+
+        setIputErr(false);
+
+        if (numbers.length == props.num) {
             onFinish(numbers);
+            if (props.rightCode.every((item, index) => item == numbers[index])) {
+                handleClose();
+            } else {
+                setIputErr(true);
+            }
         }
 
         onInput(numbers);
 
     }, [codesParentR]);
-
-    const handleClose = useCallback(() => {
-        setPreClose(false);
-        setTimeout(() => {
-            onClose(false);
-        }, 300);
-    }, []);
 
     return (
         <div className={styles.code_input}>
@@ -117,7 +134,18 @@ function KeyBoard(props: IProps) {
                 </div>
 
                 <div className={styles.code_box}>
-                    <p className={styles.code_info}>短信验证码已发送至181****8989</p>
+                    {
+                        inputErr ? (
+                            <p className={styles.err_info}>
+                                验证码不正确，请重新输入
+                            </p>
+                        ) : (
+                            <p className={styles.code_info}>
+                                短信验证码已发送至181****8989
+                            </p>
+                        )
+                    }
+
                     <div className={styles.numbers}>
                         <ul className={styles.boxes} ref={codesParentR}>
                             <li className={'box active'}>
