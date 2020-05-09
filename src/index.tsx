@@ -12,6 +12,7 @@ interface IProps {
     onInput?: (numbers: number[]) => void;
     onFinish?: (numbers: number[]) => void;
     onSendCode?: () => void;
+    onRightInput: () => void;
 }
 interface IState {
 }
@@ -33,7 +34,7 @@ function handleTimes(timeBox: HTMLElement, textBox: HTMLElement, getBtn: HTMLEle
 
 let numbers: any = [];
 function KeyBoard(props: IProps) {
-    const { onClose = () => {}, onInput = () => {}, onFinish = () => {}, onSendCode = () => {} } = props;
+    const { onClose = () => {}, onInput = () => {}, onFinish = () => {}, onSendCode = () => {}, onRightInput = () => {} } = props;
 
     const timeBoxR = useRef(null) as any;
     const textBoxR = useRef(null) as any;
@@ -115,6 +116,7 @@ function KeyBoard(props: IProps) {
             onFinish(numbers);
             if (props.rightCode.every((item, index) => item == numbers[index])) {
                 handleClose();
+                onRightInput();
             } else {
                 setIputErr(true);
             }

@@ -8,6 +8,7 @@ export interface CodeInputProps {
     onInput?: (numbers: number[]) => void;
     onFinish?: (numbers: number[]) => void;
     onSendCode?: () => void;
+    onRightInput: () => void;
 }
 export default class CodeInput extends React.Component<CodeInputProps, any> {
     static defaultProps: {
