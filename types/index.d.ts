@@ -3,6 +3,7 @@ import * as React from 'react';
 export interface CodeInputProps {
     show: boolean;
     num: number;
+    mobile: string;
     rightCode: number[];
     onClose?: (flag: boolean) => void;
     onInput?: (numbers: number[]) => void;

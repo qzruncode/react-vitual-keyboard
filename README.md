@@ -49,6 +49,7 @@ class App extends React.Component<IProps, IState> {
                 <div className={styles.btn} onClick={() => this.setState({show: true})}>open</div>
                 <CodeInput
                     num={4}                             // required (Number of number boxes)[number]
+                    mobile='13767676767'
                     rightCode={rightCode}               // required (the right codes)[Array<number>]
                     show={this.state.show}              // required (Close and hide)[boolean]
                     onClose={                           // required (Closed callback)[function]
