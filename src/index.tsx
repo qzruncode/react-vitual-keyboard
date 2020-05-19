@@ -116,7 +116,7 @@ function KeyBoard(props: IProps) {
         if (numbers.length == props.num) {
             onFinish(numbers);
 
-            onValidation(numbers).then((res) => {
+            onValidation(JSON.parse(JSON.stringify(numbers))).then((res) => {
                 handleClose();
             }).catch((err) => {
                 setIputErr(true);
