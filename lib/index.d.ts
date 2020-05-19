@@ -4,12 +4,11 @@ export interface CodeInputProps {
     show: boolean;
     num: number;
     mobile: string;
-    rightCode: number[];
     onClose?: (flag: boolean) => void;
     onInput?: (numbers: number[]) => void;
     onFinish?: (numbers: number[]) => void;
     onSendCode?: () => boolean;
-    onRightInput: () => void;
+    onValidation: () => Promise<string>;
 }
 export default class CodeInput extends React.Component<CodeInputProps, any> {
     static defaultProps: {

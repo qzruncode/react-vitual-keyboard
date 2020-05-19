@@ -116,9 +116,9 @@ function KeyBoard(props: IProps) {
         if (numbers.length == props.num) {
             onFinish(numbers);
 
-            onValidation().then(res => {
+            onValidation().then((res) => {
                 handleClose();
-            }).catch(err => {
+            }).catch((err) => {
                 setIputErr(true);
             });
         }
