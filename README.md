@@ -57,7 +57,7 @@ class App extends React.Component<IProps, IState> {
                     onInput={this.handleInput}          // optional (The callback being entered)[function]
                     onFinish={this.handleFinish}        // optional (Enter the completed callback)[function]
                     onSendCode={this.handleSendCode}    // optional (Send verification code)[function]
-                    onValidation = () => Promise.resolve('ok') // The captcha is entered correctly
+                    onValidation = (nubmers) => Promise.resolve('ok') // The captcha is entered correctly
                 />
             </div>
         );

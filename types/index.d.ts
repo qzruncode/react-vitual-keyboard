@@ -8,7 +8,7 @@ export interface CodeInputProps {
     onInput?: (numbers: number[]) => void;
     onFinish?: (numbers: number[]) => void;
     onSendCode?: () => boolean;
-    onValidation: () => Promise<string>;
+    onValidation: (numbers: number[]) => Promise<string>;
 }
 export default class CodeInput extends React.Component<CodeInputProps, any> {
     static defaultProps: {
