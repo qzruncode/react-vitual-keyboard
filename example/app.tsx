@@ -34,7 +34,6 @@ class App extends React.Component<IProps, IState> {
                 <CodeInput
                     num={4}                             // required (Number of number boxes)[number]
                     mobile='13767676767'                // required (phone number)
-                    rightCode={rightCode}               // required (the right codes)[Array<number>]
                     show={this.state.show}              // required (Close and hide)[boolean]
                     onClose={                           // required (Closed callback)[function]
                         (show: boolean) => this.setState({show})
@@ -42,7 +41,7 @@ class App extends React.Component<IProps, IState> {
                     onInput={this.handleInput}          // optional (The callback being entered)[function]
                     onFinish={this.handleFinish}        // optional (Enter the completed callback)[function]
                     onSendCode={this.handleSendCode}    // optional (Send verification code)[function]
-                    onRightInput={() => {}}             // The captcha is entered correctly
+                    onValidation={() => Promise.resolve('ok')} // The captcha is entered correctly
                 />
             </div>
         );

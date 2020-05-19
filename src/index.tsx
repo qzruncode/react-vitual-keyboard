@@ -8,12 +8,11 @@ interface IProps {
     show: boolean;
     num: number;
     mobile: string;
-    rightCode: number[];
     onClose?: (flag: boolean) => void;
     onInput?: (numbers: number[]) => void;
     onFinish?: (numbers: number[]) => void;
     onSendCode?: () => boolean;
-    onRightInput: () => void;
+    onValidation: () => Promise<string>;
 }
 interface IState {
 }
@@ -35,7 +34,7 @@ function handleTimes(timeBox: HTMLElement, textBox: HTMLElement, getBtn: HTMLEle
 
 let numbers: any = [];
 function KeyBoard(props: IProps) {
-    const { onClose = () => {}, onInput = () => {}, onFinish = () => {}, onSendCode = () => false, onRightInput = () => {} } = props;
+    const { onClose = () => {}, onInput = () => {}, onFinish = () => {}, onSendCode = () => false, onValidation = () => Promise.resolve('ok') } = props;
 
     const timeBoxR = useRef(null) as any;
     const textBoxR = useRef(null) as any;
@@ -116,12 +115,12 @@ function KeyBoard(props: IProps) {
 
         if (numbers.length == props.num) {
             onFinish(numbers);
-            if (props.rightCode.every((item, index) => item == numbers[index])) {
+
+            onValidation().then(res => {
                 handleClose();
-                onRightInput();
-            } else {
+            }).catch(err => {
                 setIputErr(true);
-            }
+            });
         }
 
         onInput(numbers);
