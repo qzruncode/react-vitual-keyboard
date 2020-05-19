@@ -145,7 +145,7 @@ function KeyBoard(props: IProps) {
                             </p>
                         ) : (
                             <p className={styles.code_info}>
-                                短信验证码已发送至{props.mobile?.slice(0, 3) + '*'.repeat(4) +props.mobile?.slice(-4)}
+                                短信验证码已发送至{props.mobile.slice(0, 3) + '*'.repeat(4) + props.mobile.slice(-4)}
                             </p>
                         )
                     }
