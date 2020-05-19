@@ -40,6 +40,7 @@ class App extends React.Component<IProps, IState> {
 
     public handleSendCode() {
         console.log('User click please send verification code');
+        return false; // If the captcha is successfully obtained return true
     }
 
     public render() {

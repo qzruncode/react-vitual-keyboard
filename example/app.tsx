@@ -24,6 +24,7 @@ class App extends React.Component<IProps, IState> {
 
     public handleSendCode() {
         console.log('User click please send verification code');
+        return false;
     }
 
     public render() {
@@ -40,6 +41,7 @@ class App extends React.Component<IProps, IState> {
                     onInput={this.handleInput}          // optional (The callback being entered)[function]
                     onFinish={this.handleFinish}        // optional (Enter the completed callback)[function]
                     onSendCode={this.handleSendCode}    // optional (Send verification code)[function]
+                    onRightInput={() => {}}             // The captcha is entered correctly
                 />
             </div>
         );

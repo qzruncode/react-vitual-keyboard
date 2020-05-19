@@ -11,7 +11,7 @@ interface IProps {
     onClose?: (flag: boolean) => void;
     onInput?: (numbers: number[]) => void;
     onFinish?: (numbers: number[]) => void;
-    onSendCode?: () => void;
+    onSendCode?: () => boolean;
     onRightInput: () => void;
 }
 interface IState {
@@ -34,7 +34,7 @@ function handleTimes(timeBox: HTMLElement, textBox: HTMLElement, getBtn: HTMLEle
 
 let numbers: any = [];
 function KeyBoard(props: IProps) {
-    const { onClose = () => {}, onInput = () => {}, onFinish = () => {}, onSendCode = () => {}, onRightInput = () => {} } = props;
+    const { onClose = () => {}, onInput = () => {}, onFinish = () => {}, onSendCode = () => false, onRightInput = () => {} } = props;
 
     const timeBoxR = useRef(null) as any;
     const textBoxR = useRef(null) as any;
@@ -61,10 +61,11 @@ function KeyBoard(props: IProps) {
 
     const handleClick = useCallback(() => {
         if (timeBoxR && textBoxR && getBtnR) {
-            textBoxR.current.style.display = 'block';
-            getBtnR.current.style.display = 'none';
-            handleTimes(timeBoxR.current, textBoxR.current, getBtnR.current);
-            onSendCode();
+            if (onSendCode()) {
+                textBoxR.current.style.display = 'block';
+                getBtnR.current.style.display = 'none';
+                handleTimes(timeBoxR.current, textBoxR.current, getBtnR.current);
+            }
         }
     }, [timeBoxR, textBoxR, getBtnR]);
 
