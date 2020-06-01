@@ -43,6 +43,7 @@ function KeyBoard(props: IProps) {
 
     useEffect(() => {
         numbers = [];
+        handleClick();
     }, []);
 
     const [codeNumbers] = useState(() => {

@@ -7,7 +7,6 @@ interface IProps {
 interface IState {
     show: boolean;
 }
-const rightCode = [8, 8, 8, 8];
 class App extends React.Component<IProps, IState> {
     constructor(props: IProps) {
         super(props);
@@ -24,7 +23,7 @@ class App extends React.Component<IProps, IState> {
 
     public handleSendCode() {
         console.log('User click please send verification code');
-        return false;
+        return true;
     }
 
     public render() {
